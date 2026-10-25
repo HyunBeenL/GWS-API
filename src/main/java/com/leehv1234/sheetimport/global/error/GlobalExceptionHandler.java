@@ -31,7 +31,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problem(code, e.getMessage());
     }
 
-    /** 같은 상품코드를 두 요청이 동시에 새로 넣으려 할 때 unique 제약에 걸린다. */
+    /** 두 요청이 같은 키로 동시에 새 행을 넣으려 할 때 unique 제약에 걸린다. */
     @ExceptionHandler(DataIntegrityViolationException.class)
     ProblemDetail handleDataConflict(DataIntegrityViolationException e) {
         log.warn("데이터 무결성 위반", e);

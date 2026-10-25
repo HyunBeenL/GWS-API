@@ -3,9 +3,9 @@ spring:
     name: sheet-import-api
 
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:sheet_import}
-    username: ${DB_USERNAME:sheet}
-    password: ${DB_PASSWORD:sheet}
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:test}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:1234}
 
   jpa:
     open-in-view: false
