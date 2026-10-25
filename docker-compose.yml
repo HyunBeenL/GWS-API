@@ -1,0 +1,23 @@
+# 로컬 개발용 MySQL 8.4 — 실행: docker compose up -d
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: sheet-import-mysql
+    environment:
+      MYSQL_DATABASE: sheet_import
+      MYSQL_USER: sheet
+      MYSQL_PASSWORD: sheet
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql-data:

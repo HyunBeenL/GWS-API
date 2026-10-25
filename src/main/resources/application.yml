@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: sheet-import-api
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:sheet_import}
+    username: ${DB_USERNAME:sheet}
+    password: ${DB_PASSWORD:sheet}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      # 테이블은 Flyway(db/migration)가 만들고, JPA는 엔티티와 테이블이 맞는지 검사만 한다.
+      ddl-auto: validate
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  data:
+    web:
+      pageable:
+        max-page-size: 100
+
+google:
+  sheets:
+    # 서비스 계정 JSON 키 위치. 지정하지 않으면 Google Sheets 연동만 꺼지고 엑셀 업로드는 그대로 동작한다.
+    # 키 파일은 커밋하지 말고 환경변수 GOOGLE_SHEETS_CREDENTIALS 로 넘기는 것을 권장한다.
+    # credentials: file:./secrets/service-account.json
+    application-name: sheet-import-api
+    connect-timeout: 10s
+    read-timeout: 30s
